@@ -125,6 +125,8 @@
 
 -   表示强调时请使用 `**SOMETHING**` 和 `「」`，而非某级标题，因为使用标题会导致文章结构层次混乱和（或）目录出现问题。
 
+-   当需要引用题目链接时，应尽可能使用原 OJ 题库中的链接而不是镜像链接。
+
 -   请正确使用 Markdown 的区块功能。插入行内代码请使用一对反引号包围代码区块；行间代码请使用一对 ` ``` ` 包围代码区块，其中反引号就是键盘左上角波浪线下面那个符号，行间代码请在第一个 ` ``` ` 的后面加上语言名称（如：` ```cpp`）。
 
     ???+ success "示例"
@@ -178,7 +180,7 @@
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[HDOJ 的「A + B Problem」](https://vjudge.net/problem/HDU-1000)"
+    ???+note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
         
         而且推荐以这种方式**标注原题链接**。
@@ -193,7 +195,7 @@
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+ note "[HDOJ 的「A + B Problem」](https://vjudge.net/problem/HDU-1000)"
+    ???+ note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
         
         而且推荐以这种方式 **标注原题链接**。
@@ -282,7 +284,7 @@
 
     建议使用源文章或者标签页的标题。
 
-    ???+ fail "不推荐的写法"
+    ???+ failure "不推荐的写法"
         ```markdown
         请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         
@@ -498,6 +500,28 @@ $$
 -   **别忘记，你还要对你的代码添加一组测试数据，以保证这个代码是可以成功运行的。** 你需要在 `docs/主题/examples/内容` 文件夹中添加一组测试数据，将输入数据存储为 `内容_编号.in`，将标准答案存储为 `内容_编号.ans`。
 
 -   最后，可以将代码添加到文档中了。请直接在文档中用添加代码块的格式，并将代码块内部直接写成 `--8<-- "你的代码路径"` 的格式就可以了。
+
+**OI Wiki** 会对例题代码进行全平台测试，为保证您的代码能够顺利通过测试，请遵守如下规则：
+
+-   您的代码需要同时支持在 C++14、C++17、C++20 标准下编译和运行。
+-   不要使用 `<bits/stdc++.h>`、`<bits/extc++.h>` 等非标准头文件。
+-   标准答案文件不要有多余空格。
+-   不要使用 [代用记号](https://en.cppreference.com/w/cpp/language/operator_alternative#Alternative_tokens)。
+-   使用 [聚合初始化](https://en.cppreference.com/w/cpp/language/aggregate_initialization) 时，`object{args}` 不可写成 `(object){args}`。
+-   使用 [运算符重载](https://en.cppreference.com/w/cpp/language/operators) 时注意格式，如重载比较运算符时，若使用成员函数写法，则不可省略 `const` 限定符。
+-   不要使用类似 `#define int long long` 的宏定义。
+-   若您需要使用 C 风格的 [有格式输入/输出](https://en.cppreference.com/w/cpp/io/c#Formatted_input.2Foutput)，请特别留意格式指示符的写法：如 `size_t` 对应 `%zu`，`ptrdiff_t` 对应 `%td`。例如输出某 STL 容器的大小时，代码应类似 `printf("%zu", container.size());`。
+-   由于当前测试环境 libstdc++ 的 `<chrono>` 库有 [BUG](https://github.com/actions/runner-images/issues/8659)，所以请避免使用 `<chrono>` 库。
+-   由于 `long` 与 `unsigned long` 在某些测试环境下为 32 位，而在另一些测试环境下为 64 位，为确保各平台代码行为一致，故不推荐使用这两种类型。推荐使用 [定宽整数类型](../lang/var.md#定宽整数类型)。
+-   不建议使用 `__gcd`、`__int128`、`__builtin_` 系列函数等非标准内容。如果您需要使用，则需确保您的代码能通过全平台测试，如 [此代码](https://github.com/OI-wiki/OI-wiki/blob/4af83d6db6017f4c36db6d4a7583bbc3f6257484/docs/ds/code/tree-decompose/tree-decompose_1.cpp#L24-L47) 提供了 libstdc++ 中 [std::bitset](../lang/csl/bitset.md) 特有成员函数 `_Find_first()` 的全平台实现。
+
+此外，为了提高代码的可读性，建议遵守如下规则：
+
+-   代码应尽可能简洁易懂，不要过度压行，不要引入过多无关代码（如未使用的宏定义等）。
+-   不推荐对函数使用 `inline` 关键字，详见 [编译优化](../lang/optimizations.md#inline---内联)。
+-   不要用 `0` 代替 `false`/`NULL`/`nullptr` 等，不要用 `1` 代替 `true` 等。
+-   在声明 [类型别名](https://en.cppreference.com/w/cpp/language/type_alias) 时，不推荐使用 `typedef`，推荐使用 `using`。
+-   不推荐用宏定义定义常量，推荐直接使用 `constexpr`/`const` 等关键字定义常量。
 
 ## 图解
 
