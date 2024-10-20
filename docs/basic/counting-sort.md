@@ -65,8 +65,8 @@ $$
 
 === "C++"
     ```cpp
-    const int N = 100010;
-    const int W = 100010;
+    constexpr int N = 100010;
+    constexpr int W = 100010;
     
     int n, w, a[N], cnt[W], b[N];
     
@@ -84,6 +84,7 @@ $$
     n = w = 0
     a = b = [0] * N
     cnt = [0] * W
+    
     
     def counting_sort():
         for i in range(1, n + 1):
