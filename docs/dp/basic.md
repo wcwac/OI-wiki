@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250, hhc0001, ZhangZhanhaoxiang
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250, hhc0001, ZhangZhanhaoxiang, Taoran\_01
 
 本页面主要介绍了动态规划的基本思想，以及动态规划中状态及状态转移方程的设计思路，帮助各位初学者对动态规划有一个初步的了解。
 
@@ -146,6 +146,8 @@ int dp() {
     ```python
     a = [0] * MAXN
     d = [0] * MAXN
+    
+    
     def dp():
         d[1] = 1
         ans = 1
@@ -212,7 +214,7 @@ int dp() {
 
 === "Python"
     ```python
-    dp = [0x1f1f1f1f] * MAXN
+    dp = [0x1F1F1F1F] * MAXN
     mx = dp[0]
     for i in range(0, n):
         bisect.insort_left(dp, a[i], 0, len(dp))
@@ -220,6 +222,13 @@ int dp() {
     while dp[ans] != mx:
         ans += 1
     ```
+
+???+ warning "注意"
+    对于最长 **上升** 子序列问题，类似地，可以令 $d_i$ 表示所有长度为 $i$ 的最长上升子序列的末尾元素的最小值。
+
+    需要注意的是，在步骤 2 中，若 $a_i \leq d_{len}$，由于最长上升子序列中相邻元素不能相等，需要在 $d$ 序列中找到 **第一个** **不小于** $a_i$ 的元素，用 $a_i$ 替换之。
+
+    在实现上（以 C++ 为例），需要将 `upper_bound` 函数改为 `lower_bound`。
 
 ## 参考资料与注释
 

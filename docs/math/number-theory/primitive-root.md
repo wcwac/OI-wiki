@@ -25,7 +25,7 @@
 $a,a^2,\cdots,a^{\delta_m(a)}$ 模 $m$ 两两不同余。
 
 ???+ note "证明"
-    考虑反证，假设存在两个数 $i\ne j$，且 $a^i\equiv a^j\pmod m$，则有 $a^{|i-j|}\equiv 1\pmod p$.
+    考虑反证，假设存在两个数 $i\ne j$，且 $a^i\equiv a^j\pmod m$，则有 $a^{|i-j|}\equiv 1\pmod m$.
     
     但是显然的有：$0<|i-j|<\delta_m(a)$，这与阶的最小性矛盾，故原命题成立。
 
@@ -222,7 +222,7 @@ $$
 ???+ note "原根存在定理"
     一个数 $m$ 存在原根当且仅当 $m=2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in \mathbf{N}^{*}$.
 
-我们来证明它，分成 $m=2,4$、$m=p^{\alpha}$、$m=2p^{\alpha}$ 与 $m\ne 2,4,p,p^{\alpha}$，四个部分。
+我们来证明它，分成 $m=2,4$、$m=p^{\alpha}$、$m=2p^{\alpha}$ 与 $m\ne 2,4,p^{\alpha},2p^{\alpha}$，四个部分。
 
 1.  $m=2,4$，原根显然存在。
 
@@ -394,7 +394,7 @@ $$
             
             结合 $\varphi(p^{\alpha})=\varphi(2p^{\alpha})$ 可知 $G$ 为模 $2p^{\alpha}$ 的原根。
 
-4.  $m\ne 2,4,p^{\alpha},p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in\mathbf{N}^*$.
+4.  $m\ne 2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in\mathbf{N}^*$.
 
     ???+ note "定理 4"
         对于 $m\ne 2,4$，且不存在奇素数 $p$ 及 $\alpha \in \mathbf{N}^{*}$ 使得 $m=p^{\alpha},2p^{\alpha}$，模 $m$ 的原根不存在。
